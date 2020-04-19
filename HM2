@@ -1,3 +1,5 @@
+/
+
 function createstudent (name, age, agree, rating) {
   let student = {
     name: name,
