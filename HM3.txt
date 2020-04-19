@@ -1,4 +1,3 @@
-# cs101
 function setup() {
   createCanvas(400, 400);
   background (int(random(0,255)),int(random(0,255)),int(random(0,255)));
