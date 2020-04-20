@@ -1,4 +1,4 @@
-/
+// HM was uploaded on 12 of april. I deleted repos. and created a new one.
 
 function createstudent (name, age, agree, rating) {
   let student = {
