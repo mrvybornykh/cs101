@@ -4,5 +4,6 @@ ABSTRACT
 
 
 
-Pattern (a bit cheating)
+Pattern 
+
 ![Pattern](https://github.com/mrvybornykh/cs101/blob/master/pictures/pattern.PNG)
