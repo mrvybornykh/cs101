@@ -58,7 +58,7 @@ rect(f8,0,m8,500);
 fill(mouseY,0,255-mouseY,200);
 rect(f9,0,m9,500);
 fill(mouseX,0,255-mouseY,220);
-rect(f10,0,m10,500);
+rect(f10,0,m10,500); 
 fill(mouseY,0,255-mouseY,255);
 rect(f11,0,m11,500);
 f++;
