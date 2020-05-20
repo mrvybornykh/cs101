@@ -85,7 +85,7 @@ function dw (){
     if (frameCount % 60 == 0) {
       var pipeH = random( 0, windowHeight/2);
       var pipe = createSprite(br.position.x + windowWidth, GROUND_Y - pipeH / 2 + 1 + 100, 200, pipeH);
-      pipe.addAnimation('normal', 'v'+floor(random(0, 6))+'.png');
+      pipe.addAnimation('normal', 'v'+floor(random(0, 5))+'.png');
       pipes.add(pipe);
 
       //top pipe
