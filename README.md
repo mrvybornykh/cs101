@@ -16,4 +16,4 @@ ABSTRACT
 
 Pattern 
 
-![Pattern](https://github.com/mrvybornykh/cs101/blob/master/pictures/pattern.PNG)
+![Pattern](https://github.com/mrvybornykh/cs101/blob/master/pictures/pattern.PNG) 
