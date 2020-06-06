@@ -1,4 +1,4 @@
-GAME (https://editor.p5js.org/mr.vybornykh/sketches/AamBvZPkY)
+UPDATED GAME (https://editor.p5js.org/mr.vybornykh/sketches/RfCUjvrkZ)
 
 ![GAME](https://github.com/mrvybornykh/cs101/blob/master/pictures/GAME.PNG)
 
