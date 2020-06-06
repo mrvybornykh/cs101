@@ -1,6 +1,6 @@
 UPDATED GAME (https://editor.p5js.org/mr.vybornykh/sketches/RfCUjvrkZ)
 
-![GAME](https://github.com/mrvybornykh/cs101/blob/master/pictures/GAME.PNG)
+![GAME](https://github.com/mrvybornykh/cs101/blob/master/pictures/111.PNG)
 
 MOTION (https://editor.p5js.org/mr.vybornykh/sketches/CrbMwav_7)
 
