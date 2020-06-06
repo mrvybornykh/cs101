@@ -1,4 +1,3 @@
-
 let scr=0;
 var GRAVITY = 0.2;
 var FLAP = -7;
@@ -9,6 +8,7 @@ var pipes;
 let pixFont;
 let regFont;
 var gameOver;
+let state;
 let song;
 var brImg, pipeImg, groundImg, bgImg;
 function preload(){
@@ -16,30 +16,70 @@ function preload(){
   pixFont = loadFont('BungeeShade-Regular.ttf'); // BungeeShade-Regular, PressStart2P-Regular, PaytoneOne-Regular, Jost.ttf
   regFont = loadFont('Jost.ttf');
 }
-// function mousePressed() {
-//   if (song.isPlaying()) { 
-//     song.pause(); 
-//   } else {
-//     song.play();
-//   }
-// }
+    
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+ createCanvas(windowWidth, windowHeight);
   textSize(40);
-  textAlign(CENTER, CENTER);
-  if(scr==0){strscr();}
-  
-
- screen();
+  textAlign(CENTER, CENTER);  
+   screen();
+   state = 'start';
 }
 
 function draw() {
+  
+  if (state === 'start') {
+    start();
+  }
+  else if(state === 'game') {
+    game();
+  }
+  else if(state === 'over') {
+    over();
+  }
+  
+  if (state === 'start' && keyIsPressed && key === 'x') {
+    state = 'game';
+  }
+  if (state === 'over' && keyIsPressed && key === 'r') {
+    document.location.reload(true);
+  }
 
+}
+
+function start() {
+  background(20,100,250);
+  fill(255, 171, 171);
+  textFont(pixFont, 100);
+  text("WELLCOME", 0, windowHeight/2 - 50);
+  fill(255, 205, 205);
+  textFont(regFont, 50);
+  text("click to start and Press X ", 0 , windowHeight/2 + 50);
+   if (song.isPlaying()) { 
+    song.pause(); 
+    } 
+}
+
+function game() {
   dw ();
 }
+
+function over() {
+  camera.off();
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  background(255, 33, 33);
+  fill(0, 50, 50);
+  textFont(pixFont, width/15);
+  text("GAME OVER", width/2, height/2 - 50);
+  fill(50, 100, 205);
+  textFont(regFont, width/20);
+  text("Press R to restart", width/2, height/2 + 50);  
+    if (song.isPlaying()) { 
+    song.pause(); 
+    } 
+}
 function  screen(){
-   brImg = loadImage('emoji.png');
-  // pipeImg = loadImage('v1.png','v2.png');
+  brImg = loadImage('emoji.png');
   groundImg = loadImage('black.png');
   bgImg = loadImage('black.png');
 
@@ -53,17 +93,19 @@ function  screen(){
   ground.addImage(groundImg);
 
   pipes = new Group();
+  
   gameOver = true;
   updateSprites(false);
- // showScores();
+  state = 'game';
   camera.position.y = windowHeight / 2;
 
 
 }
 function dw (){
-  if (gameOver && keyWentDown('x'))
+ if ( gameOver && keyWentDown('x')){
+   state = 'over';
     newGame();
-
+  }
   if (!gameOver) {
 
     if (keyWentDown('x'))
@@ -79,7 +121,7 @@ function dw (){
     }
 
     if (br.overlap(pipes)){
-      die();
+      die(); 
     }
     //spawn pipes
     if (frameCount % 60 == 0) {
@@ -87,15 +129,6 @@ function dw (){
       var pipe = createSprite(br.position.x + windowWidth, GROUND_Y - pipeH / 2 + 1 + 100, 200, pipeH);
       pipe.addAnimation('normal', 'v'+floor(random(0, 5))+'.png');
       pipes.add(pipe);
-
-      //top pipe
-      // if(pipeH<200) {
-      //   pipeH = height - (height-GROUND_Y)-(pipeH+MIN_OPENING);
-      //   pipe = createSprite(br.position.x + width, pipeH/2-100, 80, pipeH);
-      //   pipe.mirrorY(-1);
-      //   pipe.addImage(pipeImg);
-      //   pipes.add(pipe);
-      // }
     }
 
     //get rid of passed pipes
@@ -126,21 +159,9 @@ function dw (){
 
 
 }
-function strscr(){
-  background(20,150,200);
-  fill(255, 171, 171);
-  textFont(pixFont, 74, 30);
-  text("WELLCOME", windowWidth/2, windowHeight/2 - 50);
-  textAlign(CENTER, CENTER);
-  fill(255, 205, 205);
-  textFont(regFont, 34, 10);
-  text("click to start Or Press X to restart", windowWidth/2, windowHeight/2 + 50);
-  
-
-}
-
 
 function die() {
+  state = 'over';
   updateSprites(false);
   gameOver = true;
 
@@ -148,6 +169,7 @@ function die() {
 
 function newGame() {
   pipes.removeSprites();
+  state = 'game';
   gameOver = false;
   updateSprites(true);
   br.position.x = windowWidth / 2;
@@ -166,7 +188,7 @@ function showScores() {
   text(int(br.position.x/100), 95, 50);
 }
 function mousePressed() {
-  if (gameOver)
+  if (gameOver && state === 'game')
     newGame();
   br.velocity.y = FLAP;
   if (song.isPlaying()) { 
